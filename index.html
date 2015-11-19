@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Clean Code</title>
+
+		<meta name="description" content="Talk about Clean Code">
+		<meta name="author" content="Antoine Vernois">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+			<section>
+	            <section>
+	                <h1>Clean Code</h1>
+	                <h2>in practice</h2>
+	                
+	                <p>
+	                    <small><a href="http://blog.crafting-labs.fr">Antoine Vernois</a> / <a href="http://twitter.com/avernois">@avernois</a></small>
+	                </p>
+	            </section>
+
+	            <section>
+	                <h2>Antoine Vernois</h2>
+	                <p>Software Anarchist / Common Sens Consultant</p>
+	                <p>blog: <a href="https://blog.crafting-labs.fr">https://blog.crafting-labs.fr</a></p>
+	                <p>twitter: <a href="http://twitter.com/avernois">@avernois</a></p>
+	            </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Why clean code in agile conf?</h2>
+                    <aside class="notes">
+
+                    </aside>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Why clean code?</h2>
+                    <aside class="notes">démarage de projet, tout va bien
+                        et puis, rapidement ça dérape.<br>
+                        Pourquoi on ralentit ?<br>  
+                        Quick and dirty / métaphore de la fenêtre brisé.
+                    </aside>
+                </section>
+                <section>
+                    <h2>What is a clean code ?</h2>
+                    <blockquote class="fragment">
+                        Clean code is not about beautifullness,<br>
+                         it's about goodness.
+                        <div align="right">
+                            Rebecca Wirfs-Brock
+                        </div>
+                    </blockquote>
+                </section>
+                <section>
+                    <h2>measuring cleanness?</h2>
+                    <img src="images/wtfm.gif" class="fragment">
+                    <aside class="notes">
+                        Michael Feathers - Written by someone who cares<br>
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <h1>What can we do?</h1>
+            </section>
+            <section>
+                <section><h2>make it readable</h2></section>
+                
+                <section><h2 class="fragment">unreadable</h2>
+                    <pre><code data-trim>
+public List&lt;int[]&gt; getFlg() {
+  List&lt;int[]&gt; list1 = new ArrayList&lt;int[]&gt;();
+  for (int[] x : theList ) {
+    if (x[0] == 4)
+      list1.add(x);
+  }
+	
+  return list1;
+}	
+					</code></pre>
+	            </section>
+
+	            <section>
+            		<h2 class="fragment">quite better!</h2>
+					<pre><code data-trim class="java">
+public List&lt;Cell&gt; getFlaggedCells() {
+  List&lt;Cell&gt; flaggedCells = new ArrayList&lt;Cell&gt;();
+  for (Cell cell : gameBoard ) {
+    if (cell.isFlagged())
+      flaggedCells.add(cell);
+  }
+		
+  return flaggedCells;
+}	
+					</code></pre>
+            </section>
+
+            <section>and remove duplication</section>
+            
+            <section><h2 class="fragment">unreadable</h2>
+            	<pre><code data-trim class="java">
+public int score() {
+  int score = 0;
+  int rollIndex = 0;
+
+  for (int frame = 0; frame < NUMBER_OF_FRAMES; frame++) {
+    if (rolls[rollIndex] == MAX_PIN_DOWN) {
+        score += MAX_PIN_DOWN + rolls[rollIndex + 1] + rolls[rollIndex + 2];
+        rollIndex += 1;
+    } else if (rolls[rollIndex] + rolls[rollIndex + 1] == MAX_PIN_DOWN) {
+        score += MAX_PIN_DOWN + rolls[rollIndex + 2];
+        rollIndex += 2;
+    } else {
+        score += rolls[rollIndex] + rolls[rollIndex + 1];
+        rollIndex += 2;
+    }
+  }
+
+  return score;
+}
+				</code></pre>
+                <h3 class="fragment">extract code</h3>
+			  </section>
+
+	          <section>
+	          	<h2 class="fragment">quite better!</h2>
+	          	<pre><code data-trim class="java">
+public int score() {
+    int score = 0;
+    int rollIndex = 0;
+    
+    for (int frame = 0; frame < NUMBER_OF_FRAMES; frame++) {
+        if (isStrike(rollIndex)) {
+            score += MAX_PIN_DOWN + strikeBonus(rollIndex);
+            rollIndex += 1;
+        } else if (isSpare(rollIndex)) {
+            score += MAX_PIN_DOWN + spareBonus(rollIndex);
+            rollIndex += 2;
+        } else {
+            score += rolls[rollIndex] + rolls[rollIndex + 1];
+            rollIndex += 2;
+        }
+    }
+
+    return score;
+}
+</code></pre>
+
+            </section>
+        </section>
+        <section>
+            <section>
+            	<h2>Comments</h2>
+            	<h1 class="fragment">false good idea</h1>
+            </section>
+            <section>
+            	<h2 class="fragment">real life comments</h2>
+            	<pre><code data-trim class="java">
+/*
+* A comment to please checkstyle
+*/</code></pre>
+<pre><code data-trim>
+/*
+* Set the port
+*
+* @params port
+*/
+public void setPort(Port port) {this.port=port}
+</code></pre>
+<pre><code data-trim>
+...
+        } /* end for */
+        dao.flush();
+      default : 
+        break;  
+      } /* end switch */
+    } /* end if */
+  } /* end if */
+} catch ...
+</code></pre>
+
+            </section>
+
+            <section>    
+	            <blockquote>Comments are always failure
+	                <div align="right"><small>Uncle Bob</small></div>
+	            </blockquote>
+	            <blockquote class="fragment">Don't comment bad code. Rewrite it.
+	                <div align="right"><small>Brian W. Kernighan, P.J. Plaugher</small></div>
+	            </blockquote>            
+            </section>
+			<section>
+                <h2>Comments : the exception</h2>
+                <h3>explain the Why!</h3>
+            </section>  
+
+            <section>
+                <h2>Comments</h2>
+                <h3>Tests tells me What</h3>
+                <h3>Code tells me How</h3>
+                <h3>Comment, if needed, tells me why</h3>
+            </section>           
+        </section>
+
+	    <section>
+	    	<section>
+                <h2>Tests</h2>
+                <p>The givey you confidence to change the code.</p>
+                
+                <ul>
+                    <li>one test, one assert</li>
+                    <li>readibility</li>
+                    <li>tests document your code</li>
+                </ul>
+                <br>
+                <br>
+
+                <h3 class="fragment">A test should tell you a story</h3>
+                <h3 class="fragment">Tests are first class citizen!</h3>
+            </section>
+            <section>
+            	<h2>by the way</h2>
+            	<h1 class="fragment">Test everything!</h1>
+            	<aside class="notes">
+            		il n'y a pas de code trop simple pour ne pas mériter un test<br>
+            		le niveau d'une équipe est inversement proportionnel à sa capacité à utiliser un débugger
+            	</aside>
+            </section>
+        </section>
+
+		<section>
+	      	<section>
+	      		<h2>coupling</h2>
+	      		<h1 class="fragment">this is bad</h1>
+                <aside class="notes">
+                    il y a des couplages classiques, découpage en couche, etc...<br>
+                    d'autres auquels on pense moins.
+                </aside>
+	      	</section>
+	      	<section>
+	      		<aside class="notes">la mise en abyme avec le commentaire :)</aside>
+				<pre><code data-trim>
+a.getB().getC().doThings(); // this is bad
+				</code></pre>
+				<div class="fragment">instead
+                <h3>Don't talk to stranger</h3>
+					<pre><code data-trim>
+a.doThings();
+					</code></pre>
+				</div>
+	            <h2 class="fragment">Demeter's Law</h2>
+            </section>
+
+            <section>
+            	
+				<pre><code data-trim>
+public class A {
+    private B b;
+    public void execute(int i) {
+        b = new B();
+        C c = new C();
+
+        if (i <= 3) {
+            b.executeB();
+        } else {
+            c.executeC();
+        }
+    }
+}
+                </code></pre>
+                <h3 class="fragment">bad</h3>
+            </section>
+            <section>
+            	<h2>Dependancy Injection</h2>
+				<pre class="fragment"><code data-trim contenteditable>
+public class A {
+    private B b;
+    public A(C c) {
+    	this.c = c;
+    }
+
+    public void doThings(int i, B b) {
+        if (i <= 3) {
+            b.executeB();
+        } else {
+            c.executeC();
+        }
+    }
+}
+                </code></pre>
+                <h3 class="fragment highlight-green">better</h3>
+            </section>
+            <section>
+            	<h2>Dependancy injection frameworks</h2>
+            	<h1 class="fragment">they can be dangerous</h1>
+            	<small class="fragment">Spring, I'm looking at you!</small>
+
+            	<aside class="notes">on injecte tout et n'importe quoi.<br>
+            		classe = 24 trucs injectés.</aside>
+            </section>
+
+	      	<section>
+	      		<h2>coupling with external libraries</h2>
+	      		<h2>or thechnical stuff</h2>
+	      		<h4 class="fragment">like frameworks</h4>
+	      		<h1 class="fragment">don't</h1>
+	      		<h1 class="fragment">really. Please.</h1>
+	      	</section>
+
+	      	<section>
+	      		<h3>don't let them go inside your business</h3>
+	      		<div class="fragment">
+	      			<h2>use abstractions</h2>
+	      			<h2>or facades</h2>
+	      		</div>
+	      		<h3 class="fragment">try wishfull design</h3>
+	      	</section>
+
+	      	<section>
+	      		<h2>and you can do that for you whole application!</h2>
+	      		<h3 class="fragment">maybe, you should :)</h3>
+	      		<aside class="notes"></aside>
+	      	</section>
+	    </section>
+
+	    <section>
+	    	<section>
+                <h2>some smells</h2>
+                <ul>
+                    <li><span class="fragment highlight-red">S</span>ingleton</li>
+                    <li><span class="fragment highlight-red">T</span>ight coupling</li>
+                    <li><span class="fragment highlight-red">U</span>ntestable</li>
+                    <li><span class="fragment highlight-red">P</span>remature Optimisation</li>
+                    <li><span class="fragment highlight-red">I</span>ndescriptive naming</li>
+                    <li><span class="fragment highlight-red">D</span>uplication</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>lots of other suff</h2>
+                <ul>
+                    <li class="fragment">SOLID principles are good for you</li>
+                    <li class="fragment">never ever return null</li>
+                    <li class="fragment">do not check exceptions</li>
+                    <li class="fragment">do not think inheritance, think polymorphism</li>
+                    <li class="fragment">do not thing if/swicth, think polymorphism</li>
+                    <li class="fragment">avoid singletons</li>
+                </ul>
+            </section>
+
+            <section>
+            	<h2>a clean code</h2>
+				<blockquote class="fragment">
+	                <ul>
+	                    <li>is tested !</li>
+	                    <li>has no duplication</li>
+	                    <li>reveals its intention</li>
+	                    <li>easy to read</li>
+	                </ul>
+	                <div align="right" class="fragment">
+	                    B. Stroustrup, R. Jeffries, K. Beck, M. Feathers, W. Cunningham, ...
+	                </div>
+	            </blockquote>
+	        </section>
+
+            <section>
+                <h2>Clean Code - Robert Martin</h2>
+                <img src="images/clean_code.jpg">
+            </section>
+
+
+
+            <section>
+                <h2>Quotes</h2>
+                <blockquote>Any fool can write code that a computer can understand. Good programmers write code that human can understand.
+                    <div align="right">
+                        <small>Martin Fowler</small>
+                    </div>
+                </blockquote>
+                <blockquote class="fragment">...if you're afraid to change something it is clearly poorly designed.
+                    <div align="right">
+                        <small>Martin Fowler</small>
+                    </div>
+                </blockquote>
+                <blockquote class="fragment">Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
+                    <div align="right">
+                        <small>Martin Golding</small>
+                    </div>
+                </blockquote>
+            </section>
+
+            <section>
+                <h2>Read list</h2>
+                <img width="200" src="images/clean_code.jpg">
+                <img width="200" src="images/tdd.jpg"><br>
+                <img width="200" src="images/goos.jpg">
+                <img width="200" src="images/legacy.jpg">
+                <img width="200" src="images/refactoring.jpg">
+            </section>
+
+
+	    </section>
+	    <section>
+	    	<section>
+                <h1>Thanks!</h1>
+	    	</section>
+            <section>
+                For question, I'll be there the whole day, <br>
+                just come and talk to me<br>
+            </section>
+	    </section>
+		</div>
+	</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },				   
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
