@@ -305,11 +305,11 @@ public class A {
 				<pre class="fragment"><code data-trim contenteditable>
 public class A {
     private B b;
-    public A(C c) {
-    	this.c = c;
+    public A(B b) {
+    	this.b = b;
     }
 
-    public void doThings(int i, B b) {
+    public void execute(int i, C c) {
         if (i <= 3) {
             b.executeB();
         } else {
@@ -318,7 +318,7 @@ public class A {
     }
 }
                 </code></pre>
-                <h3 class="fragment highlight-green">better</h3>
+                <h3 class="fragment">better</h3>
             </section>
             <section>
             	<h2>Dependancy injection frameworks</h2>
