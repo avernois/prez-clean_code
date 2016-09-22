@@ -58,7 +58,7 @@
                 <section>
                     <h2>Why clean code in agile conf?</h2>
                     <aside class="notes">
-
+                        on a tendance à l'oublier, mais l'agilité c'est un truc de dev !
                     </aside>
                 </section>
             </section>
@@ -69,6 +69,7 @@
                         et puis, rapidement ça dérape.<br>
                         Pourquoi on ralentit ?<br>  
                         Quick and dirty / métaphore de la fenêtre brisé.
+                        essaie
                     </aside>
                 </section>
                 <section>
@@ -80,11 +81,15 @@
                             Rebecca Wirfs-Brock
                         </div>
                     </blockquote>
+                    <aside class="notes">
+                        j'ai cru esthétique, c'était une erreur.
+                    </aside>
                 </section>
                 <section>
                     <h2>measuring cleanness?</h2>
                     <img src="images/wtfm.gif" class="fragment">
                     <aside class="notes">
+                        Sonar mouhahaha<br>
                         Michael Feathers - Written by someone who cares<br>
                     </aside>
                 </section>
@@ -106,8 +111,12 @@ public List&lt;int[]&gt; getFlg() {
   }
 	
   return list1;
-}	
+}
 					</code></pre>
+                    <aside class="notes">
+                        exemple tirer de Clean Code de Robert "Uncle Bob" Martin<br>
+                        parler au business<br>
+                    </aside>
 	            </section>
 
 	            <section>
@@ -125,58 +134,48 @@ public List&lt;Cell&gt; getFlaggedCells() {
 					</code></pre>
             </section>
 
-            <section>and remove duplication</section>
-            
             <section><h2 class="fragment">unreadable</h2>
             	<pre><code data-trim class="java">
-public int score() {
-  int score = 0;
-  int rollIndex = 0;
+public RGBColor readCurrentColor(BlinkLed led) {
+    device.sendCommand(new ReadColorRequest(led));
+    
+    byte[] response = device.readResponse();
 
-  for (int frame = 0; frame < NUMBER_OF_FRAMES; frame++) {
-    if (rolls[rollIndex] == MAX_PIN_DOWN) {
-        score += MAX_PIN_DOWN + rolls[rollIndex + 1] + rolls[rollIndex + 2];
-        rollIndex += 1;
-    } else if (rolls[rollIndex] + rolls[rollIndex + 1] == MAX_PIN_DOWN) {
-        score += MAX_PIN_DOWN + rolls[rollIndex + 2];
-        rollIndex += 2;
-    } else {
-        score += rolls[rollIndex] + rolls[rollIndex + 1];
-        rollIndex += 2;
-    }
-  }
-
-  return score;
+    int red = response[2] >= 0 ? response[2] : response[2] + 256;
+    int green = response[3] >= 0 ? response[3] : response[3] + 256;
+    int blue = response[4] >= 0 ? response[4] : response[4] + 256;
+        
+    return new RGBColor(red, green, blue);
 }
 				</code></pre>
                 <h3 class="fragment">extract code</h3>
+                <aside class="notes">niveau d'abstraction différent</aside>
 			  </section>
 
 	          <section>
 	          	<h2 class="fragment">quite better!</h2>
 	          	<pre><code data-trim class="java">
-public int score() {
-    int score = 0;
-    int rollIndex = 0;
+public RGBColor readCurrentColor(BlinkLed led) {
+    device.sendCommand(new ReadColorRequest(led));
+    byte[] response = device.readResponse();
     
-    for (int frame = 0; frame < NUMBER_OF_FRAMES; frame++) {
-        if (isStrike(rollIndex)) {
-            score += MAX_PIN_DOWN + strikeBonus(rollIndex);
-            rollIndex += 1;
-        } else if (isSpare(rollIndex)) {
-            score += MAX_PIN_DOWN + spareBonus(rollIndex);
-            rollIndex += 2;
-        } else {
-            score += rolls[rollIndex] + rolls[rollIndex + 1];
-            rollIndex += 2;
-        }
-    }
-
-    return score;
+    return extractColor(response);
 }
 </code></pre>
+<pre class="fragment"><code data-trim class="java">
+private RGBColor extractColor(byte[] response) {
+    int red = convertToPositiveInt(response[2]);
+    int green = convertToPositiveInt(response[3]);
+    int blue = convertToPositiveInt(response[4]);
+    return new RGBColor(red, green, blue);
+}
 
+private int convertToPositiveInt(byte byt) {
+    return byt >= 0 ? byt : byt + 256;
+}
+</code></pre>
             </section>
+
         </section>
         <section>
             <section>
@@ -208,7 +207,9 @@ public void setPort(Port port) {this.port=port}
   } /* end if */
 } catch ...
 </code></pre>
-
+                <aside class="notes">
+                    évidemment, il y a en d'autres, des pas à jours, des faux, des inutiles.
+                </aside>
             </section>
 
             <section>    
@@ -217,11 +218,12 @@ public void setPort(Port port) {this.port=port}
 	            </blockquote>
 	            <blockquote class="fragment">Don't comment bad code. Rewrite it.
 	                <div align="right"><small>Brian W. Kernighan, P.J. Plaugher</small></div>
-	            </blockquote>            
+	            </blockquote>
+                <aside class="notes">Elements of programing style, 1974 !</aside>
             </section>
 			<section>
                 <h2>Comments : the exception</h2>
-                <h3>explain the Why!</h3>
+                <h3 class="fragment">explain the Why!</h3>
             </section>  
 
             <section>
@@ -235,21 +237,20 @@ public void setPort(Port port) {this.port=port}
 	    <section>
 	    	<section>
                 <h2>Tests</h2>
-                <p>The givey you confidence to change the code.</p>
-                
-                <ul>
-                    <li>one test, one assert</li>
-                    <li>readibility</li>
-                    <li>tests document your code</li>
-                </ul>
-                <br>
-                <br>
-
-                <h3 class="fragment">A test should tell you a story</h3>
-                <h3 class="fragment">Tests are first class citizen!</h3>
+                <h3 class="fragment">They give you confidence to change the code.</h3>
+                <h3 class="fragment">tests document your code</h3>
+            </section>
+            <section>
+                <h2>A test should tell you a story</h2>
+                <h3>one test, one assert</h3>
+            </section>
+            <section>
+                <h1>Tests are first class citizens!</h3>
             </section>
             <section>
             	<h2>by the way</h2>
+            </section>
+            <section>
             	<h1 class="fragment">Test everything!</h1>
             	<aside class="notes">
             		il n'y a pas de code trop simple pour ne pas mériter un test<br>
@@ -375,6 +376,7 @@ public class A {
                     <li class="fragment">do not think inheritance, think polymorphism</li>
                     <li class="fragment">do not thing if/swicth, think polymorphism</li>
                     <li class="fragment">avoid singletons</li>
+                    <li class="fragment">...</li>
                 </ul>
             </section>
 
@@ -416,6 +418,11 @@ public class A {
                     <div align="right">
                         <small>Martin Golding</small>
                     </div>
+                </blockquote>
+            </section>
+            <section>
+                <blockquote>Continuous attention to technical excellence and good design enhances agility. 
+                    <div align="right"><small>Agile Manifesto</small></div>
                 </blockquote>
             </section>
 
