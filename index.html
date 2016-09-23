@@ -37,23 +37,16 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-			<section>
+			
 	            <section>
 	                <h1>Clean Code</h1>
-	                <h2>in practice</h2>
-	                
-	                <p>
-	                    <small><a href="http://blog.crafting-labs.fr">Antoine Vernois</a> / <a href="http://twitter.com/avernois">@avernois</a></small>
-	                </p>
+	                <div class="fragment">
+                        <h2>Antoine Vernois</h2>
+                        <p>Software Anarchist / Common Sens Consultant</p>
+                        <p>blog: <a href="https://blog.crafting-labs.fr">https://blog.crafting-labs.fr</a></p>
+                        <p>twitter: <a href="http://twitter.com/avernois">@avernois</a></p>
+                    </div>
 	            </section>
-
-	            <section>
-	                <h2>Antoine Vernois</h2>
-	                <p>Software Anarchist / Common Sens Consultant</p>
-	                <p>blog: <a href="https://blog.crafting-labs.fr">https://blog.crafting-labs.fr</a></p>
-	                <p>twitter: <a href="http://twitter.com/avernois">@avernois</a></p>
-	            </section>
-            </section>
             <section>
                 <section>
                     <h2>Why clean code in agile conf?</h2>
@@ -90,7 +83,9 @@
                     <img src="images/wtfm.gif" class="fragment">
                     <aside class="notes">
                         Sonar mouhahaha<br>
+                        toujours un moyen d'atteindre le chiffre sans faire le taf<br>
                         Michael Feathers - Written by someone who cares<br>
+
                     </aside>
                 </section>
             </section>
@@ -120,7 +115,7 @@ public List&lt;int[]&gt; getFlg() {
 	            </section>
 
 	            <section>
-            		<h2 class="fragment">quite better!</h2>
+            		<h2 class="fragment">much better!</h2>
 					<pre><code data-trim class="java">
 public List&lt;Cell&gt; getFlaggedCells() {
   List&lt;Cell&gt; flaggedCells = new ArrayList&lt;Cell&gt;();
@@ -153,7 +148,7 @@ public RGBColor readCurrentColor(BlinkLed led) {
 			  </section>
 
 	          <section>
-	          	<h2 class="fragment">quite better!</h2>
+	          	<h2 class="fragment">much better!</h2>
 	          	<pre><code data-trim class="java">
 public RGBColor readCurrentColor(BlinkLed led) {
     device.sendCommand(new ReadColorRequest(led));
@@ -167,6 +162,7 @@ private RGBColor extractColor(byte[] response) {
     int red = convertToPositiveInt(response[2]);
     int green = convertToPositiveInt(response[3]);
     int blue = convertToPositiveInt(response[4]);
+
     return new RGBColor(red, green, blue);
 }
 
@@ -274,12 +270,12 @@ public void setPort(Port port) {this.port=port}
 a.getB().getC().doThings(); // this is bad
 				</code></pre>
 				<div class="fragment">instead
-                <h3>Don't talk to stranger</h3>
 					<pre><code data-trim>
 a.doThings();
 					</code></pre>
 				</div>
 	            <h2 class="fragment">Demeter's Law</h2>
+                <aside class="fragment">don't talk to strangers</aside>
             </section>
 
             <section>
@@ -300,6 +296,7 @@ public class A {
 }
                 </code></pre>
                 <h3 class="fragment">bad</h3>
+                <aside class="notes">enfer pour les tests. Exemple B/C = envoie de mail/SMS</aside>
             </section>
             <section>
             	<h2>Dependancy Injection</h2>
@@ -332,7 +329,7 @@ public class A {
 
 	      	<section>
 	      		<h2>coupling with external libraries</h2>
-	      		<h2>or thechnical stuff</h2>
+	      		<h2>or technical stuff</h2>
 	      		<h4 class="fragment">like frameworks</h4>
 	      		<h1 class="fragment">don't</h1>
 	      		<h1 class="fragment">really. Please.</h1>
@@ -368,12 +365,12 @@ public class A {
             </section>
 
             <section>
-                <h2>lots of other suff</h2>
+                <h2>lots of other good stuff</h2>
                 <ul>
                     <li class="fragment">SOLID principles are good for you</li>
                     <li class="fragment">never ever return null</li>
                     <li class="fragment">do not check exceptions</li>
-                    <li class="fragment">do not think inheritance, think polymorphism</li>
+                    <li class="fragment">do not always think inheritance, think composition</li>
                     <li class="fragment">do not thing if/swicth, think polymorphism</li>
                     <li class="fragment">avoid singletons</li>
                     <li class="fragment">...</li>
