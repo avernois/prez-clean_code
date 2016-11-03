@@ -37,7 +37,7 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-			
+			<section>
 	            <section>
 	                <h1>Clean Code</h1>
 	                <div class="fragment">
@@ -48,13 +48,6 @@
                         <p>github: <a href="https://github.com/avernois">avernois</a></p>
                     </div>
 	            </section>
-            <section>
-                <section>
-                    <h2>Why clean code in agile conf?</h2>
-                    <aside class="notes">
-                        on a tendance à l'oublier, mais l'agilité c'est un truc de dev !
-                    </aside>
-                </section>
             </section>
             <section>
                 <section>
@@ -171,9 +164,8 @@ private int convertToPositiveInt(byte byt) {
     return byt >= 0 ? byt : byt + 256;
 }
 </code></pre>
-            </section>
-
         </section>
+
         <section>
             <section>
             	<h2>Comments</h2>
@@ -248,7 +240,7 @@ public void setPort(Port port) {this.port=port}
             	<h2>by the way</h2>
             </section>
             <section>
-            	<h1 class="fragment">Test everything!</h1>
+            	<h1>Test everything!</h1>
             	<aside class="notes">
             		il n'y a pas de code trop simple pour ne pas mériter un test<br>
             		le niveau d'une équipe est inversement proportionnel à sa capacité à utiliser un débugger
