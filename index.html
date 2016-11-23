@@ -285,47 +285,48 @@ a.doThings();
                 <aside class="fragment">don't talk to strangers</aside>
             </section>
 
-            <section data-background="images/code.jpg">
-            	
-				<pre><code data-trim>
-public class A {
-    private B b;
-    public void execute(int i) {
-        b = new B();
-        C c = new C();
 
-        if (i <= 3) {
-            b.executeB();
-        } else {
-            c.executeC();
-        }
-    }
-}
+            <section data-background="images/dependency_injection.jpg">
+          
+                <pre><code data-trim class="java">
+public class Client {
+  private Service service;
+
+  public Client() {
+    this.service = new ServiceExample();
+  }
+
+  public String greet() {
+    return "Hello " + service.getName();
+  }
+}    
                 </code></pre>
                 <h3 class="fragment">bad</h3>
                 <aside class="notes">enfer pour les tests. Exemple B/C = envoie de mail/SMS</aside>
-            </section>
-            <section data-background="images/code.jpg">
-            	<h2>Dependency Injection</h2>
-				<pre class="fragment"><code data-trim contenteditable>
-public class A {
-    private B b;
-    public A(B b) {
-    	this.b = b;
-    }
 
-    public void execute(int i, C c) {
-        if (i <= 3) {
-            b.executeB();
-        } else {
-            c.executeC();
-        }
-    }
-}
+            </section>
+            <section data-background="images/dependency_injection.jpg">
+            	<h2>Dependency Injection</h2>
+                <pre><code data-trim class="java">
+public class Client {
+  private Service service;
+
+  public Client(IService service) {
+    this.service = service;
+  }
+
+  public String greet() {
+    return "Hello " + service.getName();
+  }
+}    
                 </code></pre>
                 <h3 class="fragment">better</h3>
+                <aside class="notes">
+                  = IoC applique a la gestion des dependances,
+                </aside>
             </section>
-            <section>
+
+            <section data-background="images/dependency_injection.jpg">
             	<h2>Dependency injection frameworks</h2>
             	<h1 class="fragment">they can be dangerous</h1>
             	<small class="fragment">Spring, I'm looking at you!</small>
@@ -453,6 +454,10 @@ public class A {
                 <a href="http://avernois.github.io/prez-clean_code/">http://avernois.github.io/prez-clean_code/</a>
             </section>
 	    </section>
+        <section>
+            <h2>crédits</h2>
+            <a href="https://www.flickr.com/photos/rdpuna/8432902647/">Plastics Injection Factory by Renee Prisble</a><br>
+        </section>
 		</div>
 	</div>
 		<script src="lib/js/head.min.js"></script>
