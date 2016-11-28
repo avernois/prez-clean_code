@@ -45,7 +45,7 @@
                         <p>Software Anarchist</p>
                         <p>twitter: <a href="https://twitter.com/avernois">@avernois</a></p>
                         <h2>Ludovic Pradel</h2>
-                        <p>Continuous learner</p>
+                        <p>Continuous Learner</p>
                         <p>twitter: <a href="https://twitter.com/ludopradel">@ludopradel</a></p>
                     </div>
 	            </section>
@@ -171,7 +171,8 @@ private RGBColor extractColor(byte[] response) {
 
     return new RGBColor(red, green, blue);
 }
-
+</code></pre>
+<pre class="fragment"><code data-trim class="java">
 private int convertToPositiveInt(byte byt) {
     return byt >= 0 ? byt : byt + 256;
 }
@@ -209,7 +210,9 @@ public void setPort(Port port) {this.port=port}
 } catch ...
 </code></pre>
                 <aside class="notes">
-                    évidemment, il y a en d'autres, des pas à jours, des faux, des inutiles.
+                    évidemment, il y a en d'autres, des pas à jours, des faux, des inutiles.<br>
+                    et le code commenté (mort), c'est pas comme si on avait des systèmes de gestion de version pour ça.
+
                 </aside>
             </section>
 
@@ -264,7 +267,7 @@ public void setPort(Port port) {this.port=port}
         </section>
 
 		<section>
-	      	<section>
+	      	<section data-background="images/chain.jpg">
 	      		<h2>coupling</h2>
 	      		<h1 class="fragment">this is bad</h1>
                 <aside class="notes">
@@ -272,7 +275,7 @@ public void setPort(Port port) {this.port=port}
                     d'autres auquels on pense moins.
                 </aside>
 	      	</section>
-	      	<section>
+	      	<section data-background="images/chain.jpg">
 	      		<aside class="notes">la mise en abyme avec le commentaire :)</aside>
 				<pre><code data-trim>
 a.getB().getC().doThings(); // this is bad
@@ -312,7 +315,7 @@ public class Client {
 public class Client {
   private Service service;
 
-  public Client(IService service) {
+  public Client(Service service) {
     this.service = service;
   }
 
@@ -327,7 +330,7 @@ public class Client {
                 </aside>
             </section>
 
-            <section data-background="images/dependency_injection.jpg">
+            <section data-background="images/chain_spring.jpg">
             	<h2>Dependency injection frameworks</h2>
             	<h1 class="fragment">they can be dangerous</h1>
             	<small class="fragment">Spring, I'm looking at you!</small>
@@ -336,7 +339,7 @@ public class Client {
             		classe = 24 trucs injectés.</aside>
             </section>
 
-	      	<section>
+	      	<section data-background="images/chain_tree.jpg">
 	      		<h2>coupling with external libraries</h2>
 	      		<h2>or technical stuff</h2>
 	      		<h4 class="fragment">like frameworks</h4>
@@ -344,7 +347,7 @@ public class Client {
 	      		<h1 class="fragment">really. Please.</h1>
 	      	</section>
 
-	      	<section>
+	      	<section data-background="images/wish.jpg">
 	      		<h3>don't let them go inside your business</h3>
 	      		<div class="fragment">
 	      			<h2>use abstractions</h2>
@@ -353,7 +356,7 @@ public class Client {
 	      		<h3 class="fragment">try wishfull design</h3>
 	      	</section>
 
-	      	<section>
+	      	<section data-background="images/dandelion_field.jpg">
 	      		<h2>and you can do that for you whole application!</h2>
 	      		<h3 class="fragment">maybe, you should :)</h3>
 	      		<aside class="notes"></aside>
@@ -361,7 +364,7 @@ public class Client {
 	    </section>
 
 	    <section>
-	    	<section>
+	    	<section data-background="images/refinery.jpg">
                 <h2>some smells</h2>
                 <ul>
                     <li><span class="fragment highlight-red">S</span>ingleton</li>
@@ -373,7 +376,7 @@ public class Client {
                 </ul>
             </section>
 
-            <section>
+            <section data-background="images/sweets.jpg">
                 <h2>lots of other good stuff</h2>
                 <ul>
                     <li class="fragment">SOLID principles are good for you</li>
@@ -386,7 +389,7 @@ public class Client {
                 </ul>
             </section>
 
-            <section>
+            <section data-background="images/clean.jpg">
             	<h2>a clean code</h2>
 				<blockquote class="fragment">
 	                <ul>
@@ -406,31 +409,11 @@ public class Client {
                 <img src="images/clean_code.jpg">
             </section>
 
-
-
-            <section>
-                <h2>Quotes</h2>
-                <blockquote>Any fool can write code that a computer can understand. Good programmers write code that human can understand.
-                    <div align="right">
-                        <small>Martin Fowler</small>
-                    </div>
-                </blockquote>
-                <blockquote class="fragment">...if you're afraid to change something it is clearly poorly designed.
-                    <div align="right">
-                        <small>Martin Fowler</small>
-                    </div>
-                </blockquote>
-                <blockquote class="fragment">Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
-                    <div align="right">
-                        <small>Martin Golding</small>
-                    </div>
-                </blockquote>
-            </section>
             <section>
                 <blockquote>Continuous attention to technical excellence and good design enhances agility. 
                     <div align="right"><small>Agile Manifesto</small></div>
                 </blockquote>
-            </section>
+             </section>
 
             <section>
                 <h2>Read list</h2>
@@ -448,20 +431,27 @@ public class Client {
                 <h1>Thanks!</h1>
 	    	</section>
             <section>
-                For question, I'll be there the whole day, <br>
-                just come and talk to me<br>
+                For question, we'll be there the whole day, <br>
+                just come and talk to us.<br>
                 <br>
                 Slides are available here:<br>
                 <a href="http://avernois.github.io/prez-clean_code/">http://avernois.github.io/prez-clean_code/</a>
             </section>
 	    </section>
         <section>
-            <h2>crédits</h2>
+            <h2>Credits</h2>
             <a href="https://www.flickr.com/photos/rdpuna/8432902647/">Plastics Injection Factory by Renee Prisble</a><br>
             <a href="https://www.flickr.com/photos/ghislainmary/9168785476/">Billard 03 by Ghislain Mary</a><br>
             <a href="https://commons.wikimedia.org/wiki/File:Miinitraaleri_%22Virsaitis%22_vrakk.jpg">A sonar image by Tuukritööde OÜ (Muinsuskaitseamet) via Wikimedia Commons</a><br>
             <a href="https://www.flickr.com/photos/nao904/6084536885/">LED by Nao. Fujita</a><br>
-
+            <a href="https://www.flickr.com/photos/jdbradway/5562490651/">Chained by Jamie Bradway</a><br>
+            <a href="https://www.flickr.com/photos/64498037@N00/3043793779/">Chains by John Kenedy</a><br>
+            <a href="https://www.flickr.com/photos/rubenrico/27950869336">Chains by Rubèn Rico</a><br>
+            <a href="https://www.flickr.com/photos/98192834@N07/26500629763">Wistful Wishes by Julie Jablonsky</a><br>
+            <a href="https://www.flickr.com/photos/s8an/7251137328">143 by Tobias Myrstrand Leander</a><br>
+            <a href="https://www.flickr.com/photos/eulothg/5202619721">Refinery by Glenn Euloth</a><br>
+            <a href="https://www.flickr.com/photos/awhiffoflemongrass/531108493/">Sweets by Lyrical Lemongrass</a><br>
+            <a href="https://www.flickr.com/photos/gusilu/3783105134">Gotta clean myself by Lucia Sanchez</a><br>
         </section>
 		</div>
 	</div>
