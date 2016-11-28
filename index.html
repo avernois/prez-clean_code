@@ -58,7 +58,6 @@
                     <h2>Why clean code?</h2>
                 </section>
                 <section data-background="images/billard.jpg">
-
                     <aside class="notes">démarage de projet, tout va bien
                         et puis, rapidement ça dérape.<br>
                         Pourquoi on ralentit ?<br>  
@@ -135,7 +134,8 @@ public List&lt;Cell&gt; getFlaggedCells() {
 					</code></pre>
             </section>
 
-            <section data-background="images/code.jpg"><h2 class="fragment">unreadable</h2>
+            <section data-background="images/led.jpg">
+                <h2 class="fragment">unreadable</h2>
             	<pre><code data-trim class="java">
 public RGBColor readCurrentColor(BlinkLed led) {
     device.sendCommand(new ReadColorRequest(led));
@@ -153,7 +153,7 @@ public RGBColor readCurrentColor(BlinkLed led) {
                 <aside class="notes">niveau d'abstraction différent</aside>
 			</section>
 
-	        <section data-background="images/code.jpg">
+	        <section data-background="images/led.jpg">
 	          	<h2 class="fragment">much better!</h2>
 	          	<pre><code data-trim class="java">
 public RGBColor readCurrentColor(BlinkLed led) {
@@ -183,7 +183,7 @@ private int convertToPositiveInt(byte byt) {
             	<h2 class="fragment">Comments</h2>
             	<h1 class="fragment">false good idea</h1>
             </section>
-            <section data-background="images/code.jpg">
+            <section data-background="images/comment.jpg">
             	<h2 class="fragment">comments in real life</h2>
             	<pre><code data-trim class="java">
 /*
@@ -213,7 +213,7 @@ public void setPort(Port port) {this.port=port}
                 </aside>
             </section>
 
-            <section>    
+            <section data-background="images/comment.jpg">    
 	            <blockquote>Comments are always failure
 	                <div align="right"><small>Uncle Bob</small></div>
 	            </blockquote>
@@ -222,12 +222,13 @@ public void setPort(Port port) {this.port=port}
 	            </blockquote>
                 <aside class="notes">Elements of programing style, 1974 !</aside>
             </section>
-			<section>
+            
+			<section data-background="images/comment.jpg">
                 <h2>Comments : the exception</h2>
                 <h3 class="fragment">explain the Why!</h3>
             </section>  
 
-            <section>
+            <section data-background="images/comment.jpg">
                 <h2>Comments</h2>
                 <h3>Tests tells me What</h3>
                 <h3>Code tells me How</h3>
@@ -457,6 +458,10 @@ public class Client {
         <section>
             <h2>crédits</h2>
             <a href="https://www.flickr.com/photos/rdpuna/8432902647/">Plastics Injection Factory by Renee Prisble</a><br>
+            <a href="https://www.flickr.com/photos/ghislainmary/9168785476/">Billard 03 by Ghislain Mary</a><br>
+            <a href="https://commons.wikimedia.org/wiki/File:Miinitraaleri_%22Virsaitis%22_vrakk.jpg">A sonar image by Tuukritööde OÜ (Muinsuskaitseamet) via Wikimedia Commons</a><br>
+            <a href="https://www.flickr.com/photos/nao904/6084536885/">LED by Nao. Fujita</a><br>
+
         </section>
 		</div>
 	</div>
