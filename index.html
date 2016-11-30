@@ -17,6 +17,8 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css" id="theme">
 
+        <link rel="stylesheet" href="css/theme/custom.css">
+
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
@@ -51,11 +53,13 @@
 	            </section>
             </section>
             <section>
-                <section data-background="images/questions.jpg">
-                    <h2>Why clean code in an agile conf?</h2>
+                <section data-background="images/questions.jpg" class="darktext">
+                    <h2 class="darktext">Why clean code in an agile conf?</h2>
+                    <br>
                 </section>
                 <section data-background="images/questions.jpg">
                     <h2>Why clean code?</h2>
+                    <br>
                 </section>
                 <section data-background="images/billard.jpg">
                     <aside class="notes">démarage de projet, tout va bien
@@ -99,7 +103,7 @@
                 <h1>What can we do?</h1>
             </section>
             <section>
-                <section data-background="images/readable.jpg"><h2>make it readable</h2></section>
+                <section data-background="images/readable.jpg"><h2 class="darktext">make it readable</h2></section>
                 
                 <section data-background="images/deminer.jpg"><h2 class="fragment">unreadable</h2>
                     <pre><code data-trim>
@@ -181,6 +185,7 @@ private int convertToPositiveInt(byte byt) {
         </section>
         <section>
             <section data-background="images/comment.jpg">
+                <br><br>
             	<h2 class="fragment">Comments</h2>
             	<h1 class="fragment">false good idea</h1>
             </section>
@@ -216,7 +221,8 @@ public void setPort(Port port) {this.port=port}
                 </aside>
             </section>
 
-            <section data-background="images/comment.jpg">    
+            <section data-background="images/comment.jpg">
+                <br><br>    
 	            <blockquote>Comments are always failure
 	                <div align="right"><small>Uncle Bob</small></div>
 	            </blockquote>
@@ -227,19 +233,19 @@ public void setPort(Port port) {this.port=port}
             </section>
 
 			<section data-background="images/comment.jpg">
+                <br><br>
                 <h2>Comments : the exception</h2>
                 <h3 class="fragment">explain the Why!</h3>
             </section>  
 
             <section data-background="images/comment.jpg">
+                <br><br><br>
                 <h2>Comments</h2>
                 <h3>Tests tells me What</h3>
                 <h3>Code tells me How</h3>
                 <h3>Comment, if needed, tells me why</h3>
             </section>           
         </section>
-
-
 
 	    <section>
 	    	<section data-background="images/safety_net.jpg">
@@ -310,7 +316,7 @@ public class Client {
 
             </section>
             <section data-background="images/dependency_injection.jpg">
-            	<h2>Dependency Injection</h2>
+            	<h2 class="darktext">Dependency Injection</h2>
                 <pre><code data-trim class="java">
 public class Client {
   private Service service;
@@ -331,20 +337,20 @@ public class Client {
             </section>
 
             <section data-background="images/chain_spring.jpg">
-            	<h2>Dependency injection frameworks</h2>
-            	<h1 class="fragment">they can be dangerous</h1>
-            	<small class="fragment">Spring, I'm looking at you!</small>
+            	<h2 class="darktext">Dependency injection frameworks</h2>
+            	<h1 class="fragment darktext">they can be dangerous</h1>
+            	<small class="fragment darktext">Spring, I'm looking at you!</small>
 
             	<aside class="notes">on injecte tout et n'importe quoi.<br>
             		classe = 24 trucs injectés.</aside>
             </section>
 
 	      	<section data-background="images/chain_tree.jpg">
-	      		<h2>coupling with external libraries</h2>
-	      		<h2>or technical stuff</h2>
-	      		<h4 class="fragment">like frameworks</h4>
-	      		<h1 class="fragment">don't.</h1>
-	      		<h1 class="fragment">really. Please.</h1>
+	      		<h2 class="darktext">coupling with external libraries</h2>
+	      		<h2 class="darktext">or technical stuff</h2>
+	      		<h4 class="fragment darktext">like frameworks</h4>
+	      		<h1 class="fragment darktext">don't.</h1>
+	      		<h1 class="fragment darktext">really. Please.</h1>
 	      	</section>
 
 	      	<section data-background="images/wish.jpg">
