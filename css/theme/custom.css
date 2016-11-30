@@ -1,5 +1,9 @@
 .reveal .darktext {
-  color : #657b83;
+    color : #ffffff;
+    width: 70%;
+    margin: 20px auto;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .reveal .red {

@@ -53,12 +53,12 @@
 	            </section>
             </section>
             <section>
-                <section data-background="images/questions.jpg" class="darktext">
+                <section data-background="images/questions.jpg">
                     <h2 class="darktext">Why clean code in an agile conf?</h2>
                     <br>
                 </section>
                 <section data-background="images/questions.jpg">
-                    <h2>Why clean code?</h2>
+                    <h2 class="darktext">Why clean code?</h2>
                     <br>
                 </section>
                 <section data-background="images/billard.jpg">
@@ -104,7 +104,7 @@
             <section>
                 <section data-background="images/readable.jpg"><h2 class="darktext">make it readable</h2></section>
                 
-                <section data-background="images/deminer.jpg"><h2 class="fragment">unreadable</h2>
+                <section data-background="images/deminer.jpg"><h2 class="fragment darktext">unreadable</h2>
                     <pre><code data-trim>
 public List&lt;int[]&gt; getFlg() {
   List&lt;int[]&gt; list1 = new ArrayList&lt;int[]&gt;();
@@ -123,7 +123,7 @@ public List&lt;int[]&gt; getFlg() {
 	            </section>
 
 	            <section data-background="images/deminer.jpg">
-            		<h2 class="fragment">much better!</h2>
+            		<h2 class="fragment darktext">much better!</h2>
 					<pre><code data-trim class="java">
 public List&lt;Cell&gt; getFlaggedCells() {
   List&lt;Cell&gt; flaggedCells = new ArrayList&lt;Cell&gt;();
@@ -252,12 +252,15 @@ public void setPort(Port port) {this.port=port}
                 <h3 class="fragment">They give you confidence to change the code.</h3>
             </section>
             <section data-background="images/library.jpg">
-                <h2>A test should tell you a story</h2>
-                <h3>one test, one assert</h3>
-                <h3 class="fragment">tests document your code</h3>
+                <div class="darktext">
+                    <h2>A test should tell you a story</h2>
+                    <h3>one test, one assert</h3>
+                </div>
+
+                <h3 class="fragment darktext">tests document your code</h3>
             </section>
             <section data-background="images/one.jpg">
-                <h1>Tests are first class citizens!</h3>
+                <h1 class="darktext">Tests are first class citizens!</h3>
             </section>
             <section>
             	<h2>by the way</h2>
@@ -345,11 +348,13 @@ public class Client {
             </section>
 
 	      	<section data-background="images/chain_tree.jpg">
-	      		<h2 class="">coupling with external libraries</h2>
-	      		<h2 class="">or technical stuff</h2>
+              <div class="darktext">
+	      		<h2>coupling with external libraries</h2>
+	      		<h2>or technical stuff</h2>
 	      		<h4 class="fragment">like frameworks</h4>
 	      		<h1 class="fragment">don't.</h1>
-	      		<h1 class="fragment">really. Please.</h1>
+                  </div>
+	      		<h1 class="fragment darktext">really. Please.</h1>
 	      	</section>
 
 	      	<section data-background="images/wish.jpg">
