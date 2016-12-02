@@ -17,6 +17,8 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css" id="theme">
 
+        <link rel="stylesheet" href="css/theme/custom.css">
+
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
@@ -42,24 +44,43 @@
 	                <h1>Clean Code</h1>
 	                <div class="fragment">
                         <h2>Antoine Vernois</h2>
-                        <p>Software Anarchist / Common Sens Consultant</p>
-                        <p>blog: <a href="https://blog.crafting-labs.fr">https://blog.crafting-labs.fr</a></p>
+                        <p>Software Anarchist</p>
                         <p>twitter: <a href="https://twitter.com/avernois">@avernois</a></p>
-                        <p>github: <a href="https://github.com/avernois">avernois</a></p>
+                        <h2>Ludovic Pradel</h2>
+                        <p>Continuous Learner</p>
+                        <p>twitter: <a href="https://twitter.com/ludopradel">@ludopradel</a></p>
                     </div>
 	            </section>
             </section>
             <section>
-                <section>
-                    <h2>Why clean code?</h2>
+                <section data-background="images/questions.jpg">
+                    <h2 class="darktext">Why code in an agile conf?</h2>
+                    <aside class="notes">
+                        on m'a posé la question une fois.<br>
+                        l'agilité c'est pas un truc de gestion de projet, ni de manager<br> 
+                        à l'origine c'est des dev. Kent beck : XP = changement social<br>
+                    </aside>
+                </section>
+                <section data-background="images/questions.jpg">
+                    <h2 class="darktext">Why clean code?</h2>
+                    <aside class="notes">
+                        il y en a qui ont déjà démarré un projet du départ ?
+                    </aside>
+                </section>
+                <section data-background="images/billard.jpg">
                     <aside class="notes">démarage de projet, tout va bien
                         et puis, rapidement ça dérape.<br>
                         Pourquoi on ralentit ?<br>  
-                        Quick and dirty / métaphore de la fenêtre brisé.
-                        essaie
                     </aside>
                 </section>
-                <section>
+                <section data-background="images/brokenwindow.jpg">
+                    <aside class="notes">
+                        Quick and dirty / métaphore de la fenêtre brisé.<br>
+                        On essaie.
+                    </aside>
+                </section>
+
+                <section data-background="images/goodness.jpg">
                     <h2>What is a clean code ?</h2>
                     <blockquote class="fragment">
                         Clean code is not about beautifullness,<br>
@@ -72,25 +93,25 @@
                         j'ai cru esthétique, c'était une erreur.
                     </aside>
                 </section>
-                <section>
-                    <h2>measuring cleanliness?</h2>
+                <section data-background="images/sonar.jpg">
+                    <h2>measuring cleanness?</h2>
                     <img src="images/wtfm.gif" class="fragment">
                     <aside class="notes">
                         Sonar mouhahaha<br>
                         toujours un moyen d'atteindre le chiffre sans faire le taf<br>
                         Michael Feathers - Written by someone who cares<br>
-
                     </aside>
                 </section>
             </section>
 
-            <section>
+            <section data-background="images/2009.03.02.jpg">
                 <h1>What can we do?</h1>
             </section>
+
             <section>
-                <section><h2>make it readable</h2></section>
+                <section data-background="images/readable.jpg"><h2 class="darktext">make it readable</h2></section>
                 
-                <section><h2 class="fragment">unreadable</h2>
+                <section data-background="images/deminer.jpg"><h2 class="fragment darktext">unreadable</h2>
                     <pre><code data-trim>
 public List&lt;int[]&gt; getFlg() {
   List&lt;int[]&gt; list1 = new ArrayList&lt;int[]&gt;();
@@ -104,12 +125,12 @@ public List&lt;int[]&gt; getFlg() {
 					</code></pre>
                     <aside class="notes">
                         exemple tirer de Clean Code de Robert "Uncle Bob" Martin<br>
-                        parler au business<br>
+                        parler au business. Yep il faut parler au gens<br>
                     </aside>
 	            </section>
 
-	            <section>
-            		<h2 class="fragment">much better!</h2>
+	            <section data-background="images/deminer.jpg">
+            		<h2 class="fragment darktext">much better!</h2>
 					<pre><code data-trim class="java">
 public List&lt;Cell&gt; getFlaggedCells() {
   List&lt;Cell&gt; flaggedCells = new ArrayList&lt;Cell&gt;();
@@ -121,9 +142,14 @@ public List&lt;Cell&gt; getFlaggedCells() {
   return flaggedCells;
 }	
 					</code></pre>
+                    <aside class="notes">
+                        le processus de nommage n'est pas simple, c'est ok de commencer avec un nom mauvais et raffiner ensuite.<br>
+                        travailler pour que changer soit simple<br>
+                    </aside>
             </section>
 
-            <section><h2 class="fragment">unreadable</h2>
+            <section data-background="images/led.jpg">
+                <h2 class="fragment">unreadable</h2>
             	<pre><code data-trim class="java">
 public RGBColor readCurrentColor(BlinkLed led) {
     device.sendCommand(new ReadColorRequest(led));
@@ -141,7 +167,7 @@ public RGBColor readCurrentColor(BlinkLed led) {
                 <aside class="notes">niveau d'abstraction différent</aside>
 			</section>
 
-	        <section>
+	        <section data-background="images/led.jpg">
 	          	<h2 class="fragment">much better!</h2>
 	          	<pre><code data-trim class="java">
 public RGBColor readCurrentColor(BlinkLed led) {
@@ -159,7 +185,8 @@ private RGBColor extractColor(byte[] response) {
 
     return new RGBColor(red, green, blue);
 }
-
+</code></pre>
+<pre class="fragment"><code data-trim class="java">
 private int convertToPositiveInt(byte byt) {
     return byt >= 0 ? byt : byt + 256;
 }
@@ -167,11 +194,12 @@ private int convertToPositiveInt(byte byt) {
             </section>
         </section>
         <section>
-            <section>
-            	<h2>Comments</h2>
+            <section data-background="images/comment.jpg">
+                <br><br>
+            	<h2 class="fragment">Comments</h2>
             	<h1 class="fragment">false good idea</h1>
             </section>
-            <section>
+            <section data-background="images/comment.jpg">
             	<h2 class="fragment">comments in real life</h2>
             	<pre><code data-trim class="java">
 /*
@@ -197,11 +225,14 @@ public void setPort(Port port) {this.port=port}
 } catch ...
 </code></pre>
                 <aside class="notes">
-                    évidemment, il y a en d'autres, des pas à jours, des faux, des inutiles.
+                    évidemment, il y a en d'autres, des pas à jours, des faux, des inutiles.<br>
+                    et le code commenté (mort), c'est pas comme si on avait des systèmes de gestion de version pour ça.
+
                 </aside>
             </section>
 
-            <section>    
+            <section data-background="images/comment.jpg">
+                <br><br>    
 	            <blockquote>Comments are always failure
 	                <div align="right"><small>Uncle Bob</small></div>
 	            </blockquote>
@@ -210,39 +241,43 @@ public void setPort(Port port) {this.port=port}
 	            </blockquote>
                 <aside class="notes">Elements of programing style, 1974 !</aside>
             </section>
-			<section>
+
+			<section data-background="images/comment.jpg">
+                <br><br>
                 <h2>Comments : the exception</h2>
                 <h3 class="fragment">explain the Why!</h3>
             </section>  
 
-            <section>
-                <h2>Comments</h2>
+            <section data-background="images/comment.jpg">
+                <br><br><br>
+                <h2 class="darktext">Comments</h2>
                 <h3>Tests tells me What</h3>
                 <h3>Code tells me How</h3>
                 <h3>Comment, if needed, tells me why</h3>
             </section>           
         </section>
 
-
-
 	    <section>
-	    	<section>
+	    	<section data-background="images/safety_net.jpg">
                 <h2>Tests</h2>
                 <h3 class="fragment">They give you confidence to change the code.</h3>
-                <h3 class="fragment">tests document your code</h3>
             </section>
-            <section>
-                <h2>A test should tell you a story</h2>
-                <h3>one test, one assert</h3>
+            <section data-background="images/library.jpg">
+                <div class="darktext">
+                    <h2>A test should tell you a story</h2>
+                    <h3>one test, one assert</h3>
+                </div>
+
+                <h3 class="fragment darktext">tests document your code</h3>
             </section>
-            <section>
-                <h1>Tests are first class citizens!</h3>
+            <section data-background="images/one.jpg">
+                <h1 class="darktext">Tests are first class citizens!</h3>
             </section>
             <section>
             	<h2>by the way</h2>
             </section>
-            <section>
-            	<h1>Test everything!</h1>
+            <section data-background="images/safety_net.2.jpg">
+            	<h1 class="darktext">Test everything!</h1>
             	<aside class="notes">
             		il n'y a pas de code trop simple pour ne pas mériter un test<br>
             		le niveau d'une équipe est inversement proportionnel à sa capacité à utiliser un débugger
@@ -251,7 +286,7 @@ public void setPort(Port port) {this.port=port}
         </section>
 
 		<section>
-	      	<section>
+	      	<section data-background="images/chain.jpg">
 	      		<h2>coupling</h2>
 	      		<h1 class="fragment">this is bad</h1>
                 <aside class="notes">
@@ -259,7 +294,7 @@ public void setPort(Port port) {this.port=port}
                     d'autres auquels on pense moins.
                 </aside>
 	      	</section>
-	      	<section>
+	      	<section data-background="images/chain.jpg">
 	      		<aside class="notes">la mise en abyme avec le commentaire :)</aside>
 				<pre><code data-trim>
 a.getB().getC().doThings(); // this is bad
@@ -270,67 +305,70 @@ a.doThings();
 					</code></pre>
 				</div>
 	            <h2 class="fragment">Demeter's Law</h2>
-                <aside class="fragment">don't talk to strangers</aside>
+                <aside class="notes">don't talk to strangers</aside>
             </section>
 
-            <section>
-            	
-				<pre><code data-trim>
-public class A {
-    private B b;
-    public void execute(int i) {
-        b = new B();
-        C c = new C();
 
-        if (i <= 3) {
-            b.executeB();
-        } else {
-            c.executeC();
-        }
-    }
-}
+            <section data-background="images/dependency_injection.jpg">
+          
+                <pre><code data-trim class="java">
+public class Client {
+  private Service service;
+
+  public Client() {
+    this.service = new ServiceExample();
+  }
+
+  public String greet() {
+    return "Hello " + service.getName();
+  }
+}    
                 </code></pre>
                 <h3 class="fragment">bad</h3>
                 <aside class="notes">enfer pour les tests. Exemple B/C = envoie de mail/SMS</aside>
-            </section>
-            <section>
-            	<h2>Dependency Injection</h2>
-				<pre class="fragment"><code data-trim contenteditable>
-public class A {
-    private B b;
-    public A(B b) {
-    	this.b = b;
-    }
 
-    public void execute(int i, C c) {
-        if (i <= 3) {
-            b.executeB();
-        } else {
-            c.executeC();
-        }
-    }
-}
+            </section>
+            <section data-background="images/dependency_injection.jpg">
+            	<h2 class="darktext">Dependency Injection</h2>
+                <pre><code data-trim class="java">
+public class Client {
+  private Service service;
+
+  public Client(Service service) {
+    this.service = service;
+  }
+
+  public String greet() {
+    return "Hello " + service.getName();
+  }
+}    
                 </code></pre>
                 <h3 class="fragment">better</h3>
+                <aside class="notes">
+                  = IoC applique a la gestion des dependances,
+                </aside>
             </section>
-            <section>
-            	<h2>Dependency injection frameworks</h2>
-            	<h1 class="fragment">they can be dangerous</h1>
-            	<small class="fragment">Spring, I'm looking at you!</small>
+
+            <section data-background="images/chain_spring.jpg">
+            	<h2 class="darktext">Dependency injection frameworks</h2>
+            	<h1 class="fragment darktext">they can be dangerous</h1>
+            	<small class="fragment darktext">Spring, I'm looking at you!</small>
 
             	<aside class="notes">on injecte tout et n'importe quoi.<br>
             		classe = 24 trucs injectés.</aside>
             </section>
 
-	      	<section>
+	      	<section data-background="images/chain_tree.jpg">
+              <div class="darktext">
 	      		<h2>coupling with external libraries</h2>
 	      		<h2>or technical stuff</h2>
 	      		<h4 class="fragment">like frameworks</h4>
 	      		<h1 class="fragment">don't.</h1>
-	      		<h1 class="fragment">really. Please.</h1>
+                  </div>
+	      		<h1 class="fragment darktext">really. Please.</h1>
 	      	</section>
 
-	      	<section>
+	      	<section data-background="images/wish.jpg">
 	      		<h3>don't let them go inside your business</h3>
 	      		<div class="fragment">
 	      			<h2>use abstractions</h2>
@@ -339,7 +377,7 @@ public class A {
 	      		<h3 class="fragment">try wishfull design</h3>
 	      	</section>
 
-	      	<section>
+	      	<section data-background="images/dandelion_field.jpg">
 	      		<h2>and you can do that for you whole application!</h2>
 	      		<h3 class="fragment">maybe, you should :)</h3>
 	      		<aside class="notes"></aside>
@@ -347,19 +385,21 @@ public class A {
 	    </section>
 
 	    <section>
-	    	<section>
+	    	<section data-background="images/refinery.jpg">
                 <h2>some smells</h2>
+                <div  class="fragment darktext">
                 <ul>
-                    <li><span class="fragment highlight-red">S</span>ingleton</li>
-                    <li><span class="fragment highlight-red">T</span>ight coupling</li>
-                    <li><span class="fragment highlight-red">U</span>ntestable</li>
-                    <li><span class="fragment highlight-red">P</span>remature Optimisation</li>
-                    <li><span class="fragment highlight-red">I</span>ndescriptive naming</li>
-                    <li><span class="fragment highlight-red">D</span>uplication</li>
+                    <li><span class="red">S</span>ingleton</li>
+                    <li><span class="red">T</span>ight coupling</li>
+                    <li><span class="red">U</span>ntestable</li>
+                    <li><span class="red">P</span>remature Optimisation</li>
+                    <li><span class="red">I</span>ndescriptive naming</li>
+                    <li><span class="red">D</span>uplication</li>
                 </ul>
+                </div>
             </section>
 
-            <section>
+            <section data-background="images/sweets.jpg">
                 <h2>lots of other good stuff</h2>
                 <ul>
                     <li class="fragment">SOLID principles are good for you</li>
@@ -371,8 +411,9 @@ public class A {
                     <li class="fragment">...</li>
                 </ul>
             </section>
-
-            <section>
+	    </section>
+        <section>
+            <section data-background="images/clean.jpg">
             	<h2>a clean code</h2>
 				<blockquote class="fragment">
 	                <ul>
@@ -387,36 +428,11 @@ public class A {
 	            </blockquote>
 	        </section>
 
-            <section>
-                <h2>Clean Code - Robert Martin</h2>
-                <img src="images/clean_code.jpg">
-            </section>
-
-
-
-            <section>
-                <h2>Quotes</h2>
-                <blockquote>Any fool can write code that a computer can understand. Good programmers write code that human can understand.
-                    <div align="right">
-                        <small>Martin Fowler</small>
-                    </div>
-                </blockquote>
-                <blockquote class="fragment">...if you're afraid to change something it is clearly poorly designed.
-                    <div align="right">
-                        <small>Martin Fowler</small>
-                    </div>
-                </blockquote>
-                <blockquote class="fragment">Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
-                    <div align="right">
-                        <small>Martin Golding</small>
-                    </div>
-                </blockquote>
-            </section>
-            <section>
+            <section data-background="images/agile-manifesto.jpg">
                 <blockquote>Continuous attention to technical excellence and good design enhances agility. 
                     <div align="right"><small>Agile Manifesto</small></div>
                 </blockquote>
-            </section>
+             </section>
 
             <section>
                 <h2>Read list</h2>
@@ -426,21 +442,38 @@ public class A {
                 <img width="200" src="images/legacy.jpg">
                 <img width="200" src="images/refactoring.jpg">
             </section>
-
-
 	    </section>
 	    <section>
 	    	<section>
                 <h1>Thanks!</h1>
-	    	</section>
-            <section>
-                For question, I'll be there the whole day, <br>
-                just come and talk to me<br>
-                <br>
-                Slides are available here:<br>
-                <a href="http://avernois.github.io/prez-clean_code/">http://avernois.github.io/prez-clean_code/</a>
+                <p class="fragment">
+                    For questions, we'll be there the whole day, <br>
+                    just come and talk to us.<br>
+
+                    <br>
+                    Slides will be available here very soon:<br>
+                    <a href="http://avernois.github.io/prez-clean_code/">http://avernois.github.io/prez-clean_code/</a>
+                </p>
             </section>
 	    </section>
+        <section>
+            <h2>Credits</h2>
+            <a href="https://www.flickr.com/photos/rdpuna/8432902647/">Plastics Injection Factory by Renee Prisble</a><br>
+            <a href="https://www.flickr.com/photos/ghislainmary/9168785476/">Billard 03 by Ghislain Mary</a><br>
+            <a href="https://commons.wikimedia.org/wiki/File:Miinitraaleri_%22Virsaitis%22_vrakk.jpg">A sonar image by Tuukritööde OÜ (Muinsuskaitseamet) via Wikimedia Commons</a><br>
+            <a href="https://www.flickr.com/photos/nao904/6084536885/">LED by Nao. Fujita</a><br>
+            <a href="https://www.flickr.com/photos/jdbradway/5562490651/">Chained by Jamie Bradway</a><br>
+            <a href="https://www.flickr.com/photos/64498037@N00/3043793779/">Chains by John Kenedy</a><br>
+            <a href="https://www.flickr.com/photos/rubenrico/27950869336">Chains by Rubèn Rico</a><br>
+            <a href="https://www.flickr.com/photos/98192834@N07/26500629763">Wistful Wishes by Julie Jablonsky</a><br>
+            <a href="https://www.flickr.com/photos/s8an/7251137328">143 by Tobias Myrstrand Leander</a><br>
+            <a href="https://www.flickr.com/photos/eulothg/5202619721">Refinery by Glenn Euloth</a><br>
+            <a href="https://www.flickr.com/photos/awhiffoflemongrass/531108493/">Sweets by Lyrical Lemongrass</a><br>
+            <a href="https://www.flickr.com/photos/gusilu/3783105134">Gotta clean myself by Lucia Sanchez</a><br>
+            <a href="https://www.flickr.com/photos/barretthall/8953647962/">the big net by popofatticus</a><br>
+            <a href="https://www.flickr.com/photos/r00s/7909471122">José Vasconcelos Library by Rossa Menkman</a><br>
+            <a href="https://www.flickr.com/photos/angieharvey/2993821776">One by Lazy Librarian</a>
+        </section>
 		</div>
 	</div>
 		<script src="lib/js/head.min.js"></script>
